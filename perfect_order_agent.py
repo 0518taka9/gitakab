@@ -75,12 +75,6 @@ class PerfectOrderAgent:
     # def getPrice(self):
     #     return self.price
 
-    def getLast(self):
-        return self.last
-
-    def getAverage(self):
-        return self.average
-
     def decide(self, active):
         """
         1分に1回呼び出し
@@ -90,8 +84,8 @@ class PerfectOrderAgent:
         """
 
         # 価格を取得し保持
-        last = self.getLast()
-        average = self.getAverage()
+        last = self.last
+        average = self.last
         self.priceSeq.append(average)
 
         self.isActive = (self.priceSeq.get(0) > 0)
@@ -149,7 +143,7 @@ class PerfectOrderAgent:
             # 買い状態
             if state == self.STATE_ASK:
                 # PO条件が崩壊 or 損切り or 1000円以上確定
-                if average < self.cut or self.up_trend == 0 or average - self.hold_price > self.hold_price * 0.001:
+                if average < self.cut or self.up_trend == 0 or average - self.hold_price > self.hold_price * 0.002:
                     self.up_trend = 0
                     self.state = self.STATE_STAY
                     act = Const.ACT_BID
@@ -157,7 +151,7 @@ class PerfectOrderAgent:
             # 売り状態
             if state == self.STATE_BID:
                 # PO条件が崩壊 or 損切り or 1000円以上確定
-                if average > self.cut or self.down_trend == 0 or self.hold_price - average > self.hold_price * 0.001:
+                if average > self.cut or self.down_trend == 0 or self.hold_price - average > self.hold_price * 0.002:
                     self.down_trend = 0
                     self.state = self.STATE_STAY
                     act = Const.ACT_ASK

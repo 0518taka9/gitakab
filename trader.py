@@ -80,4 +80,4 @@ class Trader:
             # print("Time: " + str(time.time()))
             # print("-----")
 
-        # self.drawer.sleep(0.001)
+        self.drawer.sleep(0.001)
