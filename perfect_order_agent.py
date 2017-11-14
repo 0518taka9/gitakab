@@ -153,9 +153,6 @@ class PerfectOrderAgent:
                     self.up_trend = 0
                     self.state = self.STATE_STAY
                     act = Const.ACT_BID
-                # elif self.up_trend == 0 or average - self.hold_price > 1000:
-                #     self.state = self.STATE_STAY
-                #     act = Const.ACT_BID
 
             # 売り状態
             if state == self.STATE_BID:
@@ -164,9 +161,6 @@ class PerfectOrderAgent:
                     self.down_trend = 0
                     self.state = self.STATE_STAY
                     act = Const.ACT_ASK
-                # elif self.down_trend == 0 or self.hold_price - average > 1000:
-                #     self.state = self.STATE_STAY
-                #     act = Const.ACT_ASK
 
             # 行動待機
             if state == self.STATE_STAY:
