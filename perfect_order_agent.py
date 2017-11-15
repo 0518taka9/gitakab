@@ -122,7 +122,7 @@ class PerfectOrderAgent:
             self.longEMA.append(long)
 
         # パーフェクトオーダー条件(上昇トレンド)
-        if short > middle1 and middle1 > middle2 and middle2 > long and self.shortEMA.df(-1) > 0 and self.middleEMA1.df(-1) > 0 and self.middleEMA2.df(-1) > 0 and self.longEMA.df(-1) > 0:
+        if short > middle1 and middle1 > middle2 and middle2 > long and self.middleEMA1.df(-1) > 0 and self.middleEMA2.df(-1) > 0 and self.longEMA.df(-1) > 0:
             self.up_trend += 1
             self.down_trend = 0
         # 10EMAと30EMAが下降しだしたら崩壊
@@ -130,7 +130,7 @@ class PerfectOrderAgent:
             self.up_trend = 0
 
         # パーフェクトオーダー条件(下降トレンド)
-        if short < middle1 and middle1 < middle2 and middle2 < long and self.shortEMA.df(-1) < 0 and self.middleEMA1.df(-1) < 0 and self.middleEMA2.df(-1) < 0 and self.longEMA.df(-1) < 0:
+        if short < middle1 and middle1 < middle2 and middle2 < long and self.middleEMA1.df(-1) < 0 and self.middleEMA2.df(-1) < 0 and self.longEMA.df(-1) < 0:
             self.down_trend += 1
             self.up_trend = 0
         # 10EMAと30EMAが上昇しだしたら崩壊
