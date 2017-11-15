@@ -79,6 +79,9 @@ class PerfectOrderAgent:
     def decide(self, active):
         """
         1分に1回呼び出し
+        調整する箇所：
+        EMAの日数、PO崩壊条件、利確の幅、
+        エントリー条件(PO条件がローソク何本分続くか、価格と短期移動平均線の差)
         
         :param active: 前回の注文が成功したか
         :return: アクション、グラフ描画用データ(N_CURVE数)
@@ -161,15 +164,15 @@ class PerfectOrderAgent:
 
             # 行動待機
             if state == self.STATE_STAY:
-                # 5本のローソク足が経過してもPO条件(上昇)維持
-                if self.up_trend >= 5 and self.shortEMA.get(-1) - average > self.hold_price * 0.001:
+                # 5本のローソク足が経過してもPO条件(上昇)維持 and 価格と短期移動平均線に近づく
+                if self.up_trend >= 5 and self.shortEMA.get(-1) - average > self.hold_price * 0.0005:
                     self.state = self.STATE_ASK
                     act = Const.ACT_ASK
                     self.cut = average * (1 - self.LOSSCUT)
                     self.hold_price = average
 
-                # 5本のローソク足が経過してもPO条件(下降)維持
-                if self.down_trend >= 5 and average - self.shortEMA.get(-1) > self.hold_price * 0.001:
+                # 5本のローソク足が経過してもPO条件(下降)維持 and 価格と短期移動平均線に近づく
+                if self.down_trend >= 5 and average - self.shortEMA.get(-1) > self.hold_price * 0.0005:
                     self.state = self.STATE_BID
                     act = Const.ACT_BID
                     self.cut = average * (1 + self.LOSSCUT)
