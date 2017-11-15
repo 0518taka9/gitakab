@@ -26,7 +26,7 @@ if __name__ == '__main__':
     #     0.001  # ロスカット
     # )
 
-    agent = PerfectOrderAgent(120, 1, 0.001)
+    agent = PerfectOrderAgent(120, 20, 0.001)
 
     trader = Trader(agent)
     # keyboard.add_hotkey('esc', pause)
