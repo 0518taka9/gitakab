@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="9f6d2dcb-e422-4531-acbe-9fc15717e0f7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager.py" afterPath="$PROJECT_DIR$/manager.py" />
     </list>
+=======
+    <list default="true" id="9f6d2dcb-e422-4531-acbe-9fc15717e0f7" name="Default" comment="" />
+>>>>>>> Stashed changes
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,8 +62,13 @@
       <file leaf-file-name="perfect_order_agent.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/perfect_order_agent.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
             <state relative-caret-position="82">
               <caret line="88" column="30" lean-forward="false" selection-start-line="88" selection-start-column="30" selection-end-line="88" selection-end-column="30" />
+=======
+            <state relative-caret-position="214">
+              <caret line="171" column="102" lean-forward="false" selection-start-line="171" selection-start-column="102" selection-end-line="171" selection-end-column="102" />
+>>>>>>> Stashed changes
               <folding />
             </state>
           </provider>
@@ -675,11 +684,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/manager.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="138">
           <caret line="118" column="23" lean-forward="true" selection-start-line="118" selection-start-column="23" selection-end-line="118" selection-end-column="23" />
           <folding>
             <element signature="e#46#67#0" expanded="true" />
           </folding>
+=======
+        <state relative-caret-position="214">
+          <caret line="171" column="102" lean-forward="false" selection-start-line="171" selection-start-column="102" selection-end-line="171" selection-end-column="102" />
+          <folding />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
