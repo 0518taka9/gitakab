@@ -14,7 +14,7 @@ class PerfectOrderAgent:
     def __init__(self, L, I, LOSSCUT):
         """
         :param L: 価格を保持する日数
-        :param I: decide()呼び出しの間隔 (20: 3s)
+        :param I: decide()呼び出しの間隔(traderのself.wait * I 秒)
         :param double LOSSCUT: 
         """
         self.priceSeq = Sequence(L)
@@ -35,6 +35,7 @@ class PerfectOrderAgent:
         self.first_day = True
         self.up_trend = 0
         self.down_trend = 0
+        self.hold_price = 0
 
     def drawerInfo(self):
         """
@@ -52,7 +53,7 @@ class PerfectOrderAgent:
     def tick(self, last, average, amount, active):
         """
         価格を元に何らかの指標を計算する。
-        数回に一回(tick()の呼び出しはデフォルトで3秒ごと、10回ごとにすれば30秒に一回)
+        (I)回に一回(tick()の呼び出しはデフォルトで3秒ごと、10回ごとにすれば30秒に一回)
         decide()を呼び出し、Traderにアクションを返す。
         
         :param price: manager.tick()で設定した価格
@@ -85,7 +86,7 @@ class PerfectOrderAgent:
 
         # 価格を取得し保持
         last = self.last
-        average = self.last
+        average = self.average
         self.priceSeq.append(average)
 
         self.isActive = (self.priceSeq.get(0) > 0)
@@ -121,6 +122,7 @@ class PerfectOrderAgent:
         if short > middle1 and middle1 > middle2 and middle2 > long and self.shortEMA.df(-1) > 0 and self.middleEMA1.df(-1) > 0 and self.middleEMA2.df(-1) > 0 and self.longEMA.df(-1) > 0:
             self.up_trend += 1
             self.down_trend = 0
+        # 10EMAと30EMAが下降しだしたら崩壊
         elif self.shortEMA.df(-1) < 0 and self.middleEMA1.df(-1) < 0:
             self.up_trend = 0
 
@@ -128,6 +130,7 @@ class PerfectOrderAgent:
         if short < middle1 and middle1 < middle2 and middle2 < long and self.shortEMA.df(-1) < 0 and self.middleEMA1.df(-1) < 0 and self.middleEMA2.df(-1) < 0 and self.longEMA.df(-1) < 0:
             self.down_trend += 1
             self.up_trend = 0
+        # 10EMAと30EMAが上昇しだしたら崩壊
         elif self.shortEMA.df(-1) > 0 and self.middleEMA1.df(-1) > 0:
             self.down_trend = 0
             
@@ -142,31 +145,31 @@ class PerfectOrderAgent:
 
             # 買い状態
             if state == self.STATE_ASK:
-                # PO条件が崩壊 or 損切り or 1000円以上確定
-                if average < self.cut or self.up_trend == 0 or average - self.hold_price > self.hold_price * 0.002:
+                # PO条件が崩壊 or 損切り or 利益が保持価格の0.002倍以上
+                if self.up_trend == 0 or average < self.cut or average - self.hold_price > self.hold_price * 0.002:
                     self.up_trend = 0
                     self.state = self.STATE_STAY
                     act = Const.ACT_BID
 
             # 売り状態
             if state == self.STATE_BID:
-                # PO条件が崩壊 or 損切り or 1000円以上確定
-                if average > self.cut or self.down_trend == 0 or self.hold_price - average > self.hold_price * 0.002:
+                # PO条件が崩壊 or 損切り or 利益が保持価格の0.002倍以上
+                if self.down_trend == 0 or average > self.cut or self.hold_price - average > self.hold_price * 0.002:
                     self.down_trend = 0
                     self.state = self.STATE_STAY
                     act = Const.ACT_ASK
 
             # 行動待機
             if state == self.STATE_STAY:
-                # 10本のローソク足が経過してもPO条件(上昇)維持
-                if self.up_trend >= 10 and self.shortEMA.get(-1) - average > 500:
+                # 5本のローソク足が経過してもPO条件(上昇)維持
+                if self.up_trend >= 5 and self.shortEMA.get(-1) - average > self.hold_price * 0.001:
                     self.state = self.STATE_ASK
                     act = Const.ACT_ASK
                     self.cut = average * (1 - self.LOSSCUT)
                     self.hold_price = average
 
-                # 10本のローソク足が経過してもPO条件(下降)維持
-                if self.down_trend >= 10 and average - self.shortEMA.get(-1) > 500:
+                # 5本のローソク足が経過してもPO条件(下降)維持
+                if self.down_trend >= 5 and average - self.shortEMA.get(-1) > self.hold_price * 0.001:
                     self.state = self.STATE_BID
                     act = Const.ACT_BID
                     self.cut = average * (1 + self.LOSSCUT)

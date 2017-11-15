@@ -17,6 +17,7 @@ class Trader:
         self.wait = 0
         self.benefit = 0
         self.last_action = time.time()
+        self.tick_count = 0
 
     def reset(self):
         if self.trade > 0:
@@ -25,6 +26,7 @@ class Trader:
         self.agent.reset()
 
     def tick(self):
+        self.tick_count += 1
         if time.time() - self.last_action >= self.wait:
             self.last_action = time.time()
 
@@ -58,7 +60,7 @@ class Trader:
 
             if trade > 0:
                 ac_price = self.manager.sendOrder(act, trade)
-                print("[Action: " + str(act) + " at Price: " + str(ac_price) + "]")
+                print("[Action: " + str(act) + " at Price: " + str(ac_price) + " when: " + str(self.tick_count) + "]")
                 if self.trade > 0:
                     if act == Const.ACT_ASK:
                         self.benefit += self.start_price - ac_price
@@ -80,4 +82,4 @@ class Trader:
             # print("Time: " + str(time.time()))
             # print("-----")
 
-        self.drawer.sleep(0.001)
+        # self.drawer.sleep(0.0001)

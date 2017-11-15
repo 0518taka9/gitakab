@@ -2,7 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9f6d2dcb-e422-4531-acbe-9fc15717e0f7" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/log/1.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/log/10.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/log/11.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/log/2.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/log/3.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/log/4.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/log/5.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/log/6.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/log/7.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/log/8.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/log/9.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/exec.py" afterPath="$PROJECT_DIR$/exec.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager.py" afterPath="$PROJECT_DIR$/manager.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/perfect_order_agent.py" afterPath="$PROJECT_DIR$/perfect_order_agent.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trader.py" afterPath="$PROJECT_DIR$/trader.py" />
@@ -15,7 +27,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/simulator$exec.coverage" NAME="exec Coverage Results" MODIFIED="1510679603137" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/simulator$exec.coverage" NAME="exec Coverage Results" MODIFIED="1510709846449" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/simulator$test.coverage" NAME="test Coverage Results" MODIFIED="1510557698732" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/simulator$bitflyer.coverage" NAME="bitflyer Coverage Results" MODIFIED="1510557062151" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
@@ -25,8 +37,8 @@
       <file leaf-file-name="exec.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/exec.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-136">
-              <caret line="13" column="15" lean-forward="true" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
+            <state relative-caret-position="112">
+              <caret line="28" column="36" lean-forward="false" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
               <folding>
                 <element signature="e#64#89#0" expanded="true" />
               </folding>
@@ -37,8 +49,8 @@
       <file leaf-file-name="trader.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/trader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="906">
-              <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+            <state relative-caret-position="-106">
+              <caret line="62" column="116" lean-forward="false" selection-start-line="62" selection-start-column="116" selection-end-line="62" selection-end-column="116" />
               <folding>
                 <element signature="e#46#62#0" expanded="true" />
               </folding>
@@ -46,11 +58,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="manager.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="manager.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/manager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1650">
-              <caret line="110" column="28" lean-forward="true" selection-start-line="110" selection-start-column="28" selection-end-line="110" selection-end-column="28" />
+            <state relative-caret-position="29">
+              <caret line="118" column="23" lean-forward="false" selection-start-line="118" selection-start-column="23" selection-end-line="118" selection-end-column="23" />
               <folding>
                 <element signature="e#46#67#0" expanded="true" />
               </folding>
@@ -58,11 +70,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="perfect_order_agent.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="perfect_order_agent.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/perfect_order_agent.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="87" column="27" lean-forward="false" selection-start-line="87" selection-start-column="27" selection-end-line="87" selection-end-column="27" />
+            <state relative-caret-position="82">
+              <caret line="88" column="30" lean-forward="false" selection-start-line="88" selection-start-column="30" selection-end-line="88" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -109,9 +121,10 @@
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/bitflyer.py" />
         <option value="$PROJECT_DIR$/agent.py" />
+        <option value="$PROJECT_DIR$/log/log.txt" />
         <option value="$PROJECT_DIR$/exec.py" />
-        <option value="$PROJECT_DIR$/perfect_order_agent.py" />
         <option value="$PROJECT_DIR$/trader.py" />
+        <option value="$PROJECT_DIR$/perfect_order_agent.py" />
         <option value="$PROJECT_DIR$/manager.py" />
       </list>
     </option>
@@ -453,11 +466,11 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970297" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.51662403" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25608012" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34237728" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -601,31 +614,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/exec.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-136">
-          <caret line="13" column="15" lean-forward="true" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
-          <folding>
-            <element signature="e#64#89#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bollinger.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1383">
           <caret line="114" column="40" lean-forward="false" selection-start-line="114" selection-start-column="40" selection-end-line="114" selection-end-column="40" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1650">
-          <caret line="110" column="28" lean-forward="true" selection-start-line="110" selection-start-column="28" selection-end-line="110" selection-end-column="28" />
-          <folding>
-            <element signature="e#46#67#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -637,10 +630,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/log/log.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="74412" column="38" lean-forward="true" selection-start-line="74412" selection-start-column="38" selection-end-line="74412" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/exec.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="28" column="36" lean-forward="false" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
+          <folding>
+            <element signature="e#64#89#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/trader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="906">
-          <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+        <state relative-caret-position="-106">
+          <caret line="62" column="116" lean-forward="false" selection-start-line="62" selection-start-column="116" selection-end-line="62" selection-end-column="116" />
           <folding>
             <element signature="e#46#62#0" expanded="true" />
           </folding>
@@ -649,9 +660,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/perfect_order_agent.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="87" column="27" lean-forward="false" selection-start-line="87" selection-start-column="27" selection-end-line="87" selection-end-column="27" />
+        <state relative-caret-position="82">
+          <caret line="88" column="30" lean-forward="false" selection-start-line="88" selection-start-column="30" selection-end-line="88" selection-end-column="30" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29">
+          <caret line="118" column="23" lean-forward="false" selection-start-line="118" selection-start-column="23" selection-end-line="118" selection-end-column="23" />
+          <folding>
+            <element signature="e#46#67#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
