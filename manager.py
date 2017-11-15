@@ -33,7 +33,7 @@ class Manager:
         """
         self.data = []
 
-        f = open('log/log.txt', 'r')
+        f = open('log/7.txt', 'r')
         for line in f:
             data = eval(line)
             self.data.append(data)
