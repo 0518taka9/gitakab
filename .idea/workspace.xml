@@ -56,8 +56,8 @@
       <file leaf-file-name="perfect_order_agent.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/perfect_order_agent.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="703">
-              <caret line="116" column="44" lean-forward="false" selection-start-line="116" selection-start-column="44" selection-end-line="116" selection-end-column="44" />
+            <state relative-caret-position="433">
+              <caret line="98" column="27" lean-forward="true" selection-start-line="98" selection-start-column="27" selection-end-line="98" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -95,10 +95,10 @@
         <option value="$PROJECT_DIR$/bitflyer.py" />
         <option value="$PROJECT_DIR$/agent.py" />
         <option value="$PROJECT_DIR$/log/log.txt" />
-        <option value="$PROJECT_DIR$/perfect_order_agent.py" />
         <option value="$PROJECT_DIR$/manager.py" />
         <option value="$PROJECT_DIR$/trader.py" />
         <option value="$PROJECT_DIR$/exec.py" />
+        <option value="$PROJECT_DIR$/perfect_order_agent.py" />
       </list>
     </option>
   </component>
@@ -116,7 +116,7 @@
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -129,38 +129,7 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="simulator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="simulator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="simulator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="simulator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="log" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -859,8 +828,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/perfect_order_agent.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="703">
-          <caret line="116" column="44" lean-forward="false" selection-start-line="116" selection-start-column="44" selection-end-line="116" selection-end-column="44" />
+        <state relative-caret-position="433">
+          <caret line="98" column="27" lean-forward="true" selection-start-line="98" selection-start-column="27" selection-end-line="98" selection-end-column="27" />
           <folding />
         </state>
       </provider>
