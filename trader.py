@@ -14,7 +14,7 @@ class Trader:
         self.manager = Manager()
         self.drawer = Drawer(self.agent.drawerInfo())
         self.trade = 0
-        self.wait = 0
+        self.wait = 3
         self.benefit = 0
         self.last_action = time.time()
         self.tick_count = 0
@@ -86,4 +86,4 @@ class Trader:
             # print("Time: " + str(time.time()))
             # print("-----")
 
-        # self.drawer.sleep(0.0001)
+        self.drawer.sleep(0.0001)
