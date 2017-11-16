@@ -26,12 +26,16 @@ if __name__ == '__main__':
     #     0.001  # ロスカット
     # )
 
+<<<<<<< HEAD
     agent = PerfectOrderAgent(120, 100, 0.003)
     """
     :param L: 価格を保持する日数
     :param I: decide()呼び出しの間隔(traderのself.wait * I 秒)
     :param double LOSSCUT: 
     """
+=======
+    agent = PerfectOrderAgent(120, 1, 0.001)
+>>>>>>> 6cddf6b88cc30634b2a1459d86dfb0e1a9bb38a0
 
     trader = Trader(agent)
     # keyboard.add_hotkey('esc', pause)
