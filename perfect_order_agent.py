@@ -165,22 +165,14 @@ class PerfectOrderAgent:
             # 行動待機
             if state == self.STATE_STAY:
                 # 5本のローソク足が経過してもPO条件(上昇)維持 and 価格が短期移動平均線に近づく
-<<<<<<< HEAD
                 if self.up_trend >= 5 and abs(self.shortEMA.get(-1) - average) < average * 0.0002:
-=======
-                if self.up_trend >= 5 and self.shortEMA.get(-1) - average > average * 0.001:
->>>>>>> 6cddf6b88cc30634b2a1459d86dfb0e1a9bb38a0
                     self.state = self.STATE_ASK
                     act = Const.ACT_ASK
                     self.cut = average * (1 - self.LOSSCUT)
                     self.hold_price = average
 
                 # 5本のローソク足が経過してもPO条件(下降)維持 and 価格が短期移動平均線に近づく
-<<<<<<< HEAD
                 if self.down_trend >= 5 and abs(average - self.shortEMA.get(-1)) < average * 0.0002:
-=======
-                if self.down_trend >= 5 and average - self.shortEMA.get(-1) > average * 0.001:
->>>>>>> 6cddf6b88cc30634b2a1459d86dfb0e1a9bb38a0
                     self.state = self.STATE_BID
                     act = Const.ACT_BID
                     self.cut = average * (1 + self.LOSSCUT)
