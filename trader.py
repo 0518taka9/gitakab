@@ -14,7 +14,7 @@ class Trader:
         self.manager = Manager()
         self.drawer = Drawer(self.agent.drawerInfo())
         self.trade = 0
-        self.wait = 0
+        self.wait = 3
         self.benefit = 0
         self.last_action = time.time()
         self.tick_count = 0
@@ -22,7 +22,7 @@ class Trader:
 
     def reset(self):
         if self.trade > 0:
-            # print ("取引" + str(self.trade_count) + "回目")
+            print ("取引" + str(self.trade_count) + "回目")
             print (self.benefit)
             self.trade_count += 1
         self.trade = 0
@@ -63,7 +63,7 @@ class Trader:
 
             if trade > 0:
                 ac_price = self.manager.sendOrder(act, trade)
-                # print("[Action: " + str(act) + " at Price: " + str(ac_price) + " when: " + str(self.tick_count) + "]")
+                print("[Action: " + str(act) + " at Price: " + str(ac_price) + " when: " + str(self.tick_count) + "]")
                 # print data[0] - data[1]
                 if self.trade > 0:
                     if act == Const.ACT_ASK:
@@ -79,11 +79,11 @@ class Trader:
 
             self.drawer.update(data)
 
-        #     print("ACT: " + str(act))
-        #     print("Trade: " + str(self.trade))
-        #     print("Price: " + str(average))
-        #     print("Amount: " + str(amount))
-        #     print("Time: " + str(time.time()))
-        #     print("-----")
-        #
-        # self.drawer.sleep(0.0001)
+            # print("ACT: " + str(act))
+            # print("Trade: " + str(self.trade))
+            # print("Price: " + str(average))
+            # print("Amount: " + str(amount))
+            # print("Time: " + str(time.time()))
+            # print("-----")
+
+        self.drawer.sleep(0.0001)

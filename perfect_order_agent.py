@@ -111,10 +111,10 @@ class PerfectOrderAgent:
             # 2日目以降
             # EMA(n) = EMA(n－1) + α ×｛当日価格 - EMA(n-1)｝
             # α（平滑化定数）＝2 / (n＋1）
-            short = self.shortEMA.get(-1) + (2.0 / 11.0) * (average - self.shortEMA.get(-1))
-            middle1 = self.middleEMA1.get(-1) + (2.0 / 31.0) * (average - self.middleEMA1.get(-1))
-            middle2 = self.middleEMA2.get(-1) + (2.0 / 61.0) * (average - self.middleEMA2.get(-1))
-            long = self.longEMA.get(-1) + (2.0 / 121.0) * (average - self.longEMA.get(-1))
+            short = self.shortEMA.get(-1) + (2.0 / 3.0) * (average - self.shortEMA.get(-1))
+            middle1 = self.middleEMA1.get(-1) + (2.0 / 7.0) * (average - self.middleEMA1.get(-1))
+            middle2 = self.middleEMA2.get(-1) + (2.0 / 13.0) * (average - self.middleEMA2.get(-1))
+            long = self.longEMA.get(-1) + (2.0 / 25.0) * (average - self.longEMA.get(-1))
 
             self.shortEMA.append(short)
             self.middleEMA1.append(middle1)
@@ -165,14 +165,14 @@ class PerfectOrderAgent:
             # 行動待機
             if state == self.STATE_STAY:
                 # 5本のローソク足が経過してもPO条件(上昇)維持 and 価格が短期移動平均線に近づく
-                if self.up_trend >= 10 and abs(self.shortEMA.get(-1) - average) < average * 0.0002:
+                if self.up_trend >= 5 and abs(self.shortEMA.get(-1) - average) < average * 0.0002:
                     self.state = self.STATE_ASK
                     act = Const.ACT_ASK
                     self.cut = average * (1 - self.LOSSCUT)
                     self.hold_price = average
 
                 # 5本のローソク足が経過してもPO条件(下降)維持 and 価格が短期移動平均線に近づく
-                if self.down_trend >= 10 and abs(average - self.shortEMA.get(-1)) < average * 0.0002:
+                if self.down_trend >= 5 and abs(average - self.shortEMA.get(-1)) < average * 0.0002:
                     self.state = self.STATE_BID
                     act = Const.ACT_BID
                     self.cut = average * (1 + self.LOSSCUT)
