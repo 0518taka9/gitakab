@@ -20,7 +20,7 @@ class Manager:
         # self.load()
 
         """実際のチャートでシミュレート"""
-        self.api = BitflyerAPI("", "")
+        self.api = BitflyerAPI(API_KEY, API_SECRET)
         self.product = Product.BTC_FX
         self.act = Const.ACT_STAY
         self.last_id = 0
@@ -88,7 +88,7 @@ class Manager:
 
         last = self.getLastPrice()
         average = self.average
-        amount = 0
+        amount = s_amount
 
         losscut = False
 

@@ -79,11 +79,11 @@ class Trader:
 
             self.drawer.update(data)
 
-            # print("ACT: " + str(act))
-            # print("Trade: " + str(self.trade))
-            # print("Price: " + str(average))
-            # print("Amount: " + str(amount))
-            # print("Time: " + str(time.time()))
-            # print("-----")
+            print("ACT: " + str(act))
+            print("Trade: " + str(self.trade))
+            print("Price: " + str(average))
+            print("Amount: " + str(amount))
+            print("Time: " + str(time.time()))
+            print("-----")
 
         self.drawer.sleep(0.0001)

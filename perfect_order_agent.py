@@ -5,7 +5,7 @@ from lib import Const, Sequence
 
 class PerfectOrderAgent:
     N_CURVE = 4  # 曲線の数
-    WIDTH = 300  # 表示するデータ数
+    WIDTH = 100  # 表示するデータ数
 
     STATE_STAY = 0
     STATE_ASK = 1
@@ -18,10 +18,10 @@ class PerfectOrderAgent:
         :param double LOSSCUT: 
         """
         self.priceSeq = Sequence(L)
-        self.shortEMA = Sequence(L)     # 10EMA
-        self.middleEMA1 = Sequence(L)   # 30EMA
-        self.middleEMA2 = Sequence(L)   # 60EMA
-        # self.longEMA = Sequence(L)      # 120EMA
+        self.shortEMA = Sequence(L)  # 10EMA
+        self.middleEMA1 = Sequence(L)  # 30EMA
+        self.middleEMA2 = Sequence(L)  # 60EMA
+        # self.longEMA = Sequence(L)  # 120EMA
 
         self.isActive = False  # 価格情報が取得できているか
         self.state = self.STATE_STAY
@@ -55,7 +55,7 @@ class PerfectOrderAgent:
         価格を元に何らかの指標を計算する。
         (I)回に一回(tick()の呼び出しはデフォルトで3秒ごと、10回ごとにすれば30秒に一回)
         decide()を呼び出し、Traderにアクションを返す。
-        
+
         :param price: manager.tick()で設定した価格
         :param amount: manager.tick()で設定した取引量
         :param active: 前回の注文が成功したか
@@ -82,7 +82,7 @@ class PerfectOrderAgent:
         調整する箇所：
         EMAの日数、PO崩壊条件、利確の幅、
         エントリー条件(PO条件がローソク何本分続くか、価格と短期移動平均線の差)
-        
+
         :param active: 前回の注文が成功したか
         :return: アクション、グラフ描画用データ(N_CURVE数)
         """
@@ -111,9 +111,9 @@ class PerfectOrderAgent:
             # 2日目以降
             # EMA(n) = EMA(n－1) + α ×｛当日価格 - EMA(n-1)｝
             # α（平滑化定数）＝2 / (n＋1）
-            short = self.shortEMA.get(-1) + (2.0 / 3.0) * (average - self.shortEMA.get(-1))
-            middle1 = self.middleEMA1.get(-1) + (2.0 / 7.0) * (average - self.middleEMA1.get(-1))
-            middle2 = self.middleEMA2.get(-1) + (2.0 / 13.0) * (average - self.middleEMA2.get(-1))
+            short = self.shortEMA.get(-1) + (2.0 / 11.0) * (average - self.shortEMA.get(-1))
+            middle1 = self.middleEMA1.get(-1) + (2.0 / 31.0) * (average - self.middleEMA1.get(-1))
+            middle2 = self.middleEMA2.get(-1) + (2.0 / 61.0) * (average - self.middleEMA2.get(-1))
             # long = self.longEMA.get(-1) + (2.0 / 25.0) * (average - self.longEMA.get(-1))
 
             self.shortEMA.append(short)
@@ -122,7 +122,8 @@ class PerfectOrderAgent:
             # self.longEMA.append(long)
 
         # パーフェクトオーダー条件(上昇トレンド)
-        if short > middle1 and middle1 > middle2 and self.middleEMA1.df(-1) > 0 and self.middleEMA2.df(-1) > 0:
+        if short > middle1 and middle1 > middle2 and self.middleEMA1.df(-1) > 0 and self.middleEMA2.df(
+                -1) > 0 and self.middleEMA2.df(-1) > 0:
             self.up_trend += 1
             self.down_trend = 0
         # 10EMAと30EMAが下降しだしたら崩壊
@@ -130,13 +131,14 @@ class PerfectOrderAgent:
             self.up_trend = 0
 
         # パーフェクトオーダー条件(下降トレンド)
-        if short < middle1 and middle1 < middle2 and self.middleEMA1.df(-1) < 0 and self.middleEMA2.df(-1) < 0:
+        if short < middle1 and middle1 < middle2 and self.middleEMA1.df(-1) < 0 and self.middleEMA2.df(
+                -1) < 0 and self.middleEMA2.df(-1) < 0:
             self.down_trend += 1
             self.up_trend = 0
         # 10EMAと30EMAが上昇しだしたら崩壊
         elif self.shortEMA.df(-1) > 0 and self.middleEMA1.df(-1) > 0:
             self.down_trend = 0
-            
+
         # print "up :" + str(self.up_trend)
         # print "down :" + str(self.down_trend)
         # print "------------------"
@@ -149,7 +151,7 @@ class PerfectOrderAgent:
             # 買い状態
             if state == self.STATE_ASK:
                 # PO条件が崩壊 or 損切り or 利益が保持価格の0.002倍以上
-                if self.up_trend == 0 or average < self.cut or average - self.hold_price > self.hold_price * 0.0015:
+                if self.up_trend == 0 or average < self.cut or average - self.hold_price > self.hold_price * 0.002:
                     self.up_trend = 0
                     self.state = self.STATE_STAY
                     act = Const.ACT_BID
@@ -157,7 +159,7 @@ class PerfectOrderAgent:
             # 売り状態
             if state == self.STATE_BID:
                 # PO条件が崩壊 or 損切り or 利益が保持価格の0.002倍以上
-                if self.down_trend == 0 or average > self.cut or self.hold_price - average > self.hold_price * 0.0015:
+                if self.down_trend == 0 or average > self.cut or self.hold_price - average > self.hold_price * 0.002:
                     self.down_trend = 0
                     self.state = self.STATE_STAY
                     act = Const.ACT_ASK
@@ -165,14 +167,14 @@ class PerfectOrderAgent:
             # 行動待機
             if state == self.STATE_STAY:
                 # 5本のローソク足が経過してもPO条件(上昇)維持 and 価格が短期移動平均線に近づく
-                if self.up_trend >= 5 and abs(self.shortEMA.get(-1) - average) < average * 0.0002:
+                if self.up_trend >= 5:
                     self.state = self.STATE_ASK
                     act = Const.ACT_ASK
                     self.cut = average * (1 - self.LOSSCUT)
                     self.hold_price = average
 
                 # 5本のローソク足が経過してもPO条件(下降)維持 and 価格が短期移動平均線に近づく
-                if self.down_trend >= 5 and abs(average - self.shortEMA.get(-1)) < average * 0.0002:
+                if self.down_trend >= 5:
                     self.state = self.STATE_BID
                     act = Const.ACT_BID
                     self.cut = average * (1 + self.LOSSCUT)
