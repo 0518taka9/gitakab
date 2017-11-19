@@ -111,9 +111,9 @@ class PerfectOrderAgent:
             # 2日目以降
             # EMA(n) = EMA(n－1) + α ×｛当日価格 - EMA(n-1)｝
             # α（平滑化定数）＝2 / (n＋1）
-            short = self.shortEMA.get(-1) + (2.0 / 11.0) * (average - self.shortEMA.get(-1))
-            middle1 = self.middleEMA1.get(-1) + (2.0 / 31.0) * (average - self.middleEMA1.get(-1))
-            middle2 = self.middleEMA2.get(-1) + (2.0 / 61.0) * (average - self.middleEMA2.get(-1))
+            short = self.shortEMA.get(-1) + (2.0 / 6.0) * (average - self.shortEMA.get(-1))
+            middle1 = self.middleEMA1.get(-1) + (2.0 / 11.0) * (average - self.middleEMA1.get(-1))
+            middle2 = self.middleEMA2.get(-1) + (2.0 / 21.0) * (average - self.middleEMA2.get(-1))
             # long = self.longEMA.get(-1) + (2.0 / 25.0) * (average - self.longEMA.get(-1))
 
             self.shortEMA.append(short)
@@ -151,7 +151,7 @@ class PerfectOrderAgent:
             # 買い状態
             if state == self.STATE_ASK:
                 # PO条件が崩壊 or 損切り or 利益が保持価格の0.002倍以上
-                if self.up_trend == 0 or average < self.cut or average - self.hold_price > self.hold_price * 0.002:
+                if self.up_trend == 0 or average < self.cut or average - self.hold_price > self.hold_price * 0.005:
                     self.up_trend = 0
                     self.state = self.STATE_STAY
                     act = Const.ACT_BID
@@ -159,7 +159,7 @@ class PerfectOrderAgent:
             # 売り状態
             if state == self.STATE_BID:
                 # PO条件が崩壊 or 損切り or 利益が保持価格の0.002倍以上
-                if self.down_trend == 0 or average > self.cut or self.hold_price - average > self.hold_price * 0.002:
+                if self.down_trend == 0 or average > self.cut or self.hold_price - average > self.hold_price * 0.005:
                     self.down_trend = 0
                     self.state = self.STATE_STAY
                     act = Const.ACT_ASK
@@ -167,14 +167,14 @@ class PerfectOrderAgent:
             # 行動待機
             if state == self.STATE_STAY:
                 # 5本のローソク足が経過してもPO条件(上昇)維持 and 価格が短期移動平均線に近づく
-                if self.up_trend >= 5:
+                if self.up_trend >= 3 and average - self.shortEMA.get(-1) < average * 0.001:
                     self.state = self.STATE_ASK
                     act = Const.ACT_ASK
                     self.cut = average * (1 - self.LOSSCUT)
                     self.hold_price = average
 
                 # 5本のローソク足が経過してもPO条件(下降)維持 and 価格が短期移動平均線に近づく
-                if self.down_trend >= 5:
+                if self.down_trend >= 3 and self.shortEMA.get(-1) - average < average * 0.001:
                     self.state = self.STATE_BID
                     act = Const.ACT_BID
                     self.cut = average * (1 + self.LOSSCUT)

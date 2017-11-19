@@ -23,7 +23,7 @@ class Trader:
     def reset(self):
         if self.trade > 0:
             print ("取引" + str(self.trade_count) + "回目")
-            print (self.benefit)
+            # print (self.benefit)
             self.trade_count += 1
         self.trade = 0
         self.agent.reset()
@@ -79,11 +79,13 @@ class Trader:
 
             self.drawer.update(data)
 
-            print("ACT: " + str(act))
+            # print("ACT: " + str(act))
             print("Trade: " + str(self.trade))
             print("Price: " + str(average))
-            print("Amount: " + str(amount))
-            print("Time: " + str(time.time()))
+            # print("Amount: " + str(amount))
+            # print("Time: " + str(time.time()))
+            print("Benefit: " + str(self.benefit))
+            print("Passed minutes: " + str(self.tick_count))
             print("-----")
 
         self.drawer.sleep(0.0001)
