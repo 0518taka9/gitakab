@@ -25,7 +25,7 @@ if __name__ == '__main__':
     #     20,  # アクション判断の間隔 (*3s)
     #     0.001  # ロスカット
     # )
-    agent = PerfectOrderAgent(20, 60, 0.0005)
+    agent = PerfectOrderAgent(34, 20, 0.003)
     """
     :param L: 価格を保持する日数
     :param I: decide()呼び出しの間隔(traderのself.wait * I 秒)
