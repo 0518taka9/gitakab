@@ -152,7 +152,7 @@ class PerfectOrderAgent:
 
             # 買い状態
             if state == self.STATE_ASK:
-                # PO条件が崩壊 or 損切り or 利益が保持価格の0.002倍以上
+                # PO条件が崩壊 or 損切り or 利益が保持価格の0.005倍以上
                 if self.up_trend == 0 or average < self.cut or average - self.hold_price > self.hold_price * 0.005:
                     self.up_trend = 0
                     self.state = self.STATE_STAY
@@ -160,7 +160,7 @@ class PerfectOrderAgent:
 
             # 売り状態
             if state == self.STATE_BID:
-                # PO条件が崩壊 or 損切り or 利益が保持価格の0.002倍以上
+                # PO条件が崩壊 or 損切り or 利益が保持価格の0.005倍以上
                 if self.down_trend == 0 or average > self.cut or self.hold_price - average > self.hold_price * 0.005:
                     self.down_trend = 0
                     self.state = self.STATE_STAY
