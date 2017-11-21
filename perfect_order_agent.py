@@ -5,7 +5,7 @@ from lib import Const, Sequence
 
 class PerfectOrderAgent:
     N_CURVE = 4  # 曲線の数
-    WIDTH = 100  # 表示するデータ数
+    WIDTH = 60   # 表示するデータ数
 
     STATE_STAY = 0
     STATE_ASK = 1

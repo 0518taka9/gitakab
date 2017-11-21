@@ -119,7 +119,7 @@ class Manager:
         # price = average
 
         """実際のチャートでシミュレート"""
-        price = self.average
+        price = self.getLastPrice()
 
         if action == Const.ACT_ASK:
             price *= 1 + self.MARGIN
