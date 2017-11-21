@@ -119,6 +119,7 @@ class Manager:
         # price = average
 
         """実際のチャートでシミュレート"""
+
         price = self.getLastPrice()
 
         if action == Const.ACT_ASK:
