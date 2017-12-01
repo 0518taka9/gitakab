@@ -8,7 +8,7 @@ API_KEY = ""
 API_SECRET = ""
 
 class Manager:
-    MARGIN = 0.000001
+    MARGIN = 0.00001
 
     def __init__(self):
         """
@@ -33,7 +33,7 @@ class Manager:
         """
         self.data = []
 
-        f = open('log/10.txt', 'r')
+        f = open('log/1201-1202.txt', 'r')
         for line in f:
             data = eval(line)
             self.data.append(data)
