@@ -8,7 +8,7 @@ API_KEY = ""
 API_SECRET = ""
 
 class Manager:
-    MARGIN = 0.000001
+    MARGIN = 0.00001
 
     def __init__(self):
         """

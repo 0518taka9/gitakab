@@ -11,11 +11,15 @@ class PerfectOrderAgent:
     STATE_ASK = 1
     STATE_BID = 2
 
-    def __init__(self, L, I, LOSSCUT):
+    BENEFIT = 0.004     # 利幅
+    LOSSCUT = 0.0025     # ロスカット
+    CANDLESTICKS = 5    # エントリー条件(PO条件維持)
+    CLOSE = 0.001       # エントリー条件(平均価格が短期移動平均線に近づく)
+
+    def __init__(self, L, I):
         """
         :param L: 価格を保持する日数
         :param I: decide()呼び出しの間隔(traderのself.wait * I 秒)
-        :param double LOSSCUT: 
         """
         self.priceSeq = Sequence(L)
         self.shortEMA = Sequence(L)  # 5EMA
@@ -30,7 +34,7 @@ class PerfectOrderAgent:
 
         self.L = L
         self.I = I
-        self.LOSSCUT = LOSSCUT
+        # self.LOSSCUT = LOSSCUT
 
         self.first_day = True
         self.up_trend = 0
@@ -66,7 +70,8 @@ class PerfectOrderAgent:
         self.tick_count += 1
 
         # (I)回に1回decide()を呼び出す
-        if self.tick_count == self.I:
+        # 買いor売り状態なら連続で呼び出し
+        if self.tick_count == self.I or self.state != self.STATE_STAY:
             self.tick_count = 0
             return self.decide(active)
 
@@ -150,24 +155,24 @@ class PerfectOrderAgent:
 
             # 買い状態
             if state == self.STATE_ASK:
-                # PO条件が崩壊 or 損切り or 利益が保持価格の0.005倍以上
-                if self.up_trend == 0 or last < self.cut or last - self.hold_price > self.hold_price * 0.004:
+                # PO条件が崩壊 or 損切り or 利益が保持価格の(BENEFIT)倍以上
+                if self.up_trend == 0 or last < self.cut or last - self.hold_price > self.hold_price * self.BENEFIT:
                     self.up_trend = 0
                     self.state = self.STATE_STAY
                     act = Const.ACT_BID
 
             # 売り状態
             if state == self.STATE_BID:
-                # PO条件が崩壊 or 損切り or 利益が保持価格の0.005倍以上
-                if self.down_trend == 0 or last > self.cut or self.hold_price - last > self.hold_price * 0.004:
+                # PO条件が崩壊 or 損切り or 利益が保持価格の(BENEFIT)倍以上
+                if self.down_trend == 0 or last > self.cut or self.hold_price - last > self.hold_price * self.BENEFIT:
                     self.down_trend = 0
                     self.state = self.STATE_STAY
                     act = Const.ACT_ASK
 
-            # 行動待機
+            # 待機状態
             if state == self.STATE_STAY:
                 # 5本のローソク足が経過してもPO条件(上昇)維持 and 平均価格が短期移動平均線に近づく(中期移動平均線を超えない)
-                if self.up_trend >= 5 and average - self.shortEMA.get(-1) < average * 0.001 \
+                if self.up_trend >= self.CANDLESTICKS and average - self.shortEMA.get(-1) < average * self.CLOSE \
                         and self.middleEMA.get(-1) < average:
                     self.state = self.STATE_ASK
                     act = Const.ACT_ASK
@@ -175,7 +180,7 @@ class PerfectOrderAgent:
                     self.hold_price = last
 
                 # 5本のローソク足が経過してもPO条件(下降)維持 and 平均価格が短期移動平均線に近づく(中期移動平均線を超えない)
-                if self.down_trend >= 5 and self.shortEMA.get(-1) - average < average * 0.001 \
+                if self.down_trend >= self.CANDLESTICKS and self.shortEMA.get(-1) - average < average * self.CLOSE \
                         and self.middleEMA.get(-1) > average:
                     self.state = self.STATE_BID
                     act = Const.ACT_BID
