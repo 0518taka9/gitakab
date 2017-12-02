@@ -12,7 +12,6 @@ class Trader:
     def __init__(self, agent):
         self.agent = agent
         self.manager = Manager()
-        self.drawer = Drawer(self.agent.drawerInfo())
         self.trade = 0
         self.wait = 0
         self.benefit = 0
@@ -37,10 +36,7 @@ class Trader:
             if losscut:
                 self.reset()
 
-            (act, data) = self.agent.tick(last, average, amount, True)
-
-            if data is None:
-                return
+            act = self.agent.tick(last, average, amount, True)
 
             self.tick_count += 1
             trade = 0
@@ -51,7 +47,7 @@ class Trader:
                     trade = self.trade
                 else:
                     # 買い入れ
-                    trade = 1
+                    trade = 0.01
 
             if act == Const.ACT_BID:
                 if self.trade > 0:
@@ -59,12 +55,11 @@ class Trader:
                     trade = self.trade
                 else:
                     # 売り入れ
-                    trade = 1
+                    trade = 0.01
 
             if trade > 0:
                 ac_price = self.manager.sendOrder(act, trade)
                 print("[Action: " + str(act) + " at Price: " + str(ac_price) + " when: " + str(self.tick_count) + "]")
-                # print data[0] - data[1]
                 if self.trade > 0:
                     if act == Const.ACT_ASK:
                         self.benefit += self.start_price - ac_price
@@ -77,13 +72,9 @@ class Trader:
                     self.trade = trade
                     self.start_price = ac_price
 
-            self.drawer.update(data)
-
             # print("ACT: " + str(act))
             # print("Trade: " + str(self.trade))
             # print("Price: " + str(average))
             # print("Amount: " + str(amount))
             # print("Time: " + str(time.time()))
             # print("-----")
-
-        # self.drawer.sleep(0.0001)

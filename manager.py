@@ -48,7 +48,7 @@ class Manager:
         """
 
         """logのデータでシミュレート"""
-        last = self.data[self.count][4]     # 終値(log.txt: 0, num.txt: 4)
+        last = self.data[self.count][0]     # 終値(log.txt: 0, num.txt: 4)
         average = self.data[self.count][1]  # 平均値(log.txt, num.txt: 1)
         amount = self.data[self.count][2]   # 取引量(log.txt: 2, num.txt: 0)
 
@@ -114,19 +114,19 @@ class Manager:
         """
 
         """logのデータでシミュレート"""
-        last = self.data[self.count][4]     # 終値(log.txt: 0, num.txt: 4)
+        last = self.data[self.count][0]     # 終値(log.txt: 0, num.txt: 4)
         average = self.data[self.count][1]  # 平均値(log.txt, num.txt: 1)
-        price = average
+        price = last
 
         """実際のチャートでシミュレート"""
         # price = self.average
 
         if action == Const.ACT_ASK:
             price *= 1 + self.MARGIN
-            return price
+            return price * amount
 
         if action == Const.ACT_BID:
             price *= 1 - self.MARGIN
-            return price
+            return price * amount
 
         sys.exit()

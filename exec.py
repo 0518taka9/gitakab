@@ -26,11 +26,10 @@ if __name__ == '__main__':
     #     0.001  # ロスカット
     # )
 
-    agent = PerfectOrderAgent(34, 0)
+    agent = PerfectOrderAgent(34, 20)
     """
     :param L: 価格を保持する日数
     :param I: decide()呼び出しの間隔(traderのself.wait * I 秒)
-    :param double LOSSCUT: 
     """
 
     trader = Trader(agent)
