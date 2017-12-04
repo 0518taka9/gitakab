@@ -1,0 +1,34 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# import keyboard
+from trader import Trader
+from perfect_order_agent import *
+
+PLAYING = 1
+PAUSING = 0
+
+def pause():
+    global mode
+    mode = 1 - mode
+
+
+class Learning:
+    def __init__(self, benefit, losscut, candlesticks):
+
+        agent = PerfectOrderAgent(34, 20, benefit, losscut, candlesticks)
+        """
+        :param L: 価格を保持する日数
+        :param I: decide()呼び出しの間隔(traderのself.wait * I 秒)
+        """
+
+        trader = Trader(agent)
+
+        global mode
+        mode = PLAYING
+        while not trader.isFinish():
+            if mode == PLAYING:
+                trader.tick()
+                self.score = trader.getBenefit()
+
+    def getScore(self):
+        return self.score

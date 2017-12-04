@@ -21,8 +21,8 @@ class Trader:
 
     def reset(self):
         if self.trade > 0:
-            print ("取引" + str(self.trade_count) + "回目")
-            print (self.benefit)
+            # print ("取引" + str(self.trade_count) + "回目")
+            # print (self.benefit)
             self.trade_count += 1
         self.trade = 0
         self.agent.reset()
@@ -59,7 +59,7 @@ class Trader:
 
             if trade > 0:
                 ac_price = self.manager.sendOrder(act, trade)
-                print("[Action: " + str(act) + " at Price: " + str(ac_price) + " when: " + str(self.tick_count) + "]")
+                # print("[Action: " + str(act) + " at Price: " + str(ac_price) + " when: " + str(self.tick_count) + "]")
                 if self.trade > 0:
                     if act == Const.ACT_ASK:
                         self.benefit += self.start_price - ac_price
@@ -78,3 +78,9 @@ class Trader:
             # print("Amount: " + str(amount))
             # print("Time: " + str(time.time()))
             # print("-----")
+
+    def getBenefit(self):
+        return self.benefit
+
+    def isFinish(self):
+        return self.manager.isFinish()

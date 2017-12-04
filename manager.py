@@ -15,6 +15,8 @@ class Manager:
         初期設定
         """
 
+        self.finish = False
+
         """logのデータでシミュレート"""
         self.count = 0
         self.load()
@@ -33,7 +35,7 @@ class Manager:
         """
         self.data = []
 
-        f = open('log/1201-1202.txt', 'r')
+        f = open('log/1203_17-1204_1.txt', 'r')
         for line in f:
             data = eval(line)
             self.data.append(data)
@@ -54,7 +56,8 @@ class Manager:
 
         self.count += 1
         if self.count == len(self.data):
-            sys.exit()
+            # sys.exit()
+            self.finish = True
 
         """実際のチャートでシミュレート"""
 
@@ -94,12 +97,12 @@ class Manager:
 
         return (last, average, amount, losscut)
 
-    def getLastPrice(self):
-        """
-        現在の終値を返す。
-        :return: 現在の終値
-        """
-        return float(self.api.get_ticker(self.product)['ltp'])
+    # def getLastPrice(self):
+    #     """
+    #     現在の終値を返す。
+    #     :return: 現在の終値
+    #     """
+    #     return float(self.api.get_ticker(self.product)['ltp'])
 
     def sendOrder(self, action, amount):
         """
@@ -130,3 +133,6 @@ class Manager:
             return price * amount
 
         sys.exit()
+
+    def isFinish(self):
+        return self.finish

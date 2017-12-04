@@ -9,16 +9,25 @@ class PerfectOrderAgent:
     STATE_ASK = 1
     STATE_BID = 2
 
-    BENEFIT = 0.005  # 利幅
+    BENEFIT = 0.006  # 利幅
     LOSSCUT = 0.01  # ロスカット
-    CANDLESTICKS = 4  # エントリー条件(PO条件維持)
+    CANDLESTICKS = 5  # エントリー条件(PO条件維持)
     CLOSE = 0.001  # エントリー条件(平均価格が短期移動平均線に近づく)
 
-    def __init__(self, L, I):
+    def __init__(self, L, I, benefit=0, losscut=0, candlesticks=0):
         """
         :param L: 価格を保持する日数
         :param I: decide()呼び出しの間隔(traderのself.wait * I 秒)
         """
+        if benefit != 0:
+            self.BENEFIT = benefit
+
+        if losscut != 0:
+            self.LOSSCUT = losscut
+
+        if candlesticks != 0:
+            self.CANDLESTICKS = candlesticks
+
         self.priceSeq = Sequence(L)
         self.shortEMA = Sequence(L)  # 5EMA
         self.middleEMA = Sequence(L)  # 13EMA
@@ -100,6 +109,8 @@ class PerfectOrderAgent:
 
         # 1分目は移動平均に平均値を用いる
         if self.first_day:
+            self.tick_count = 0
+
             short = average
             middle = average
             long_ = average

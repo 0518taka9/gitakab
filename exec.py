@@ -37,6 +37,6 @@ if __name__ == '__main__':
 
     global mode
     mode = PLAYING
-    while True:
+    while not trader.isFinish():
         if mode == PLAYING:
             trader.tick()
