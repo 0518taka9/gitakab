@@ -33,7 +33,7 @@ class Manager:
         """
         self.data = []
 
-        f = open('log/10.txt', 'r')
+        f = open('log/log.txt', 'r')
         for line in f:
             data = eval(line)
             self.data.append(data)
@@ -48,7 +48,7 @@ class Manager:
         """
 
         """logのデータでシミュレート"""
-        last = self.data[self.count][4]     # 終値(log.txt: 0, num.txt: 4)
+        last = self.data[self.count][0]     # 終値(log.txt: 0, num.txt: 4)
         average = self.data[self.count][1]  # 平均値(log.txt, num.txt: 1)
         amount = self.data[self.count][2]   # 取引量(log.txt: 2, num.txt: 0)
 
